@@ -13,8 +13,14 @@ use Closure;
 use App\Utils\Signature;
 use Illuminate\Http\Request;
 use League\OAuth2\Server\Grant\AbstractGrant;
+use Laravel\Passport\ClientRepository;
 
 class RequestHandle{
+    private $clientRepository;
+    public function __construct(ClientRepository $clientRepository){
+        $this->clientRepository = $clientRepository;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -31,6 +37,8 @@ class RequestHandle{
                 $scopes = collect(config('open.scopes'))->keys()->implode(AbstractGrant::SCOPE_DELIMITER_STRING);
                 $request->merge(['scope'=>$scopes]);
             }
+            $client = $this->clientRepository->find($request->input('client_id'));
+            Auth::loginUsingId($client->user_id);
         }
         return $next($request);
     }
