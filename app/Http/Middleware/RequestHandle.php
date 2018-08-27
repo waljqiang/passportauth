@@ -40,6 +40,13 @@ class RequestHandle{
             $client = $this->clientRepository->find($request->input('client_id'));
             Auth::loginUsingId($client->user_id);
         }
+        if($request->is('oauth/token')){
+            $scopes = $request->input('scope');
+            if(empty($scopes)){
+                $scopes = collect(config('open.scopes'))->keys()->implode(AbstractGrant::SCOPE_DELIMITER_STRING);
+                $request->merge(['scope'=>$scopes]);
+            }
+        }
         return $next($request);
     }
 
