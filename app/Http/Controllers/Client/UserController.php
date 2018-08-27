@@ -14,7 +14,7 @@ class UserController extends Controller
     public function check(Request $request){
     	$scope = $request->input('scope');
         if(!$request->user()->tokenCan($scope)){
-            throw CheckAuthException::noScope('screen-getScreenList');
+            throw CheckAuthException::noScope($scope);
         }
         return Auth::user();
     }

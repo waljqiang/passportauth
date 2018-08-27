@@ -89,7 +89,7 @@ class CheckAuthException extends AuthorizationException
     {
         $errorMessage = "The access_token do not has the scope of {$scope}";
         $hint = 'Check the scopes of the access_token';
-        return new static($errorMessage, config('exceptions.TOKEN_NO_SCOPE'), 'invalid_scope', 400, $hint, $redirectUri);
+        return new static($errorMessage, 5, 'invalid_scope', 400, $hint, $redirectUri);
     }
 
     /**
@@ -108,6 +108,10 @@ class CheckAuthException extends AuthorizationException
     public function getHint()
     {
         return $this->hint;
+    }
+
+    public function getErrorType(){
+        return $this->errorType;
     }
 
 }

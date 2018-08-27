@@ -9,6 +9,18 @@ use Illuminate\Http\Response;
 
 class ResponseHandle
 {
+    private $errCode = [
+        1 => 'TOKEN_INVALID',
+        2 => 'GRANTTYPE_UNSUPPORTED',
+        3 => 'PARAMS_INVALID',
+        4 => 'CLIENT_INVALID',
+        5 => 'SCOPE_INVALID',
+        6 => 'CREDENTIALS_INVALID',
+        7 => 'AUTH_SERVER_ERR',
+        8 => 'REFRESH_TOKEN_INVALID',
+        9 => 'ACCESS_DENEID',
+        10 => 'GRANT_INVALID'
+    ];
 
     /**
      * Handle an incoming request.
@@ -25,7 +37,7 @@ class ResponseHandle
 
         if ($response->exception) {
             if ($response->exception instanceof CheckAuthException) {
-                return $this->makeErrorResponse($response->exception->getHttpStatusCode(), $response->exception->getCode(), $response->exception->getMessage(), $response->exception->getHint());
+                return $this->makeErrorResponse($response->exception->getHttpStatusCode(), $this->makeCode($response->exception->getCode()), $response->exception->getMessage(), $response->exception->getHint());
             }
         }
         return $this->makeSuccessResponse($response->getStatusCode(),$response->getData());
@@ -49,6 +61,10 @@ class ResponseHandle
     protected function makeSuccessResponse($status,$data=[]){
         $errCode = config('exceptions.SUCCESS');
         return response()->json(compact('status','errCode','data'));
+    }
+
+    protected function makeCode($errCode){
+        return isset($this->errCode[$errCode]) ? config('exceptions.' . $this->errCode[$errCode]) : $errCode;
     }
 
 }
