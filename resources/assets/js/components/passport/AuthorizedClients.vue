@@ -8,14 +8,15 @@
     <div>
         <div v-if="tokens.length > 0">
             <div class="card card-default">
-                <div class="card-header">Authorized Applications</div>
+                <div class="card-header">已认证应用</div>
 
                 <div class="card-body">
                     <!-- Authorized Tokens -->
                     <table class="table table-borderless mb-0">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>User ID</th>
+                                <th>Client Name</th>
                                 <th>Scopes</th>
                                 <th></th>
                             </tr>
@@ -23,6 +24,11 @@
 
                         <tbody>
                             <tr v-for="token in tokens">
+                                <!-- User ID -->
+                                <td style="vertical-align: middle;">
+                                    {{ token.user_id }}
+                                </td>
+
                                 <!-- Client Name -->
                                 <td style="vertical-align: middle;">
                                     {{ token.client.name }}
@@ -35,10 +41,11 @@
                                     </span>
                                 </td>
 
+
                                 <!-- Revoke Button -->
                                 <td style="vertical-align: middle;">
                                     <a class="action-link text-danger" @click="revoke(token)">
-                                        Revoke
+                                        废除
                                     </a>
                                 </td>
                             </tr>

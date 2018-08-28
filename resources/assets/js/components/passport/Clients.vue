@@ -10,11 +10,10 @@
             <div class="card-header">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span>
-                        OAuth Clients
+                        授权码认证客户端
                     </span>
-
                     <a class="action-link" tabindex="-1" @click="showCreateClientForm">
-                        Create New Client
+                        创建客户端
                     </a>
                 </div>
             </div>
@@ -22,7 +21,7 @@
             <div class="card-body">
                 <!-- Current Clients -->
                 <p class="mb-0" v-if="clients.length === 0">
-                    You have not created any OAuth clients.
+                    您还没有创建任何客户端.
                 </p>
 
                 <table class="table table-borderless mb-0" v-if="clients.length > 0">
@@ -56,14 +55,14 @@
                             <!-- Edit Button -->
                             <td style="vertical-align: middle;">
                                 <a class="action-link" tabindex="-1" @click="edit(client)">
-                                    Edit
+                                    编辑
                                 </a>
                             </td>
 
                             <!-- Delete Button -->
                             <td style="vertical-align: middle;">
                                 <a class="action-link text-danger" @click="destroy(client)">
-                                    Delete
+                                    删除
                                 </a>
                             </td>
                         </tr>
@@ -78,7 +77,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">
-                            Create Client
+                            创建客户端
                         </h4>
 
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -107,7 +106,7 @@
                                                                 @keyup.enter="store" v-model="createForm.name">
 
                                     <span class="form-text text-muted">
-                                        Something your users will recognize and trust.
+                                        客户端名称.
                                     </span>
                                 </div>
                             </div>
@@ -121,7 +120,7 @@
                                                     @keyup.enter="store" v-model="createForm.redirect">
 
                                     <span class="form-text text-muted">
-                                        Your application's authorization callback URL.
+                                        您的应用认证后回调地址.
                                     </span>
                                 </div>
                             </div>
@@ -130,10 +129,10 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
 
                         <button type="button" class="btn btn-primary" @click="store">
-                            Create
+                            创建
                         </button>
                     </div>
                 </div>
@@ -146,7 +145,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">
-                            Edit Client
+                            编辑客户端
                         </h4>
 
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -175,7 +174,7 @@
                                                                 @keyup.enter="update" v-model="editForm.name">
 
                                     <span class="form-text text-muted">
-                                        Something your users will recognize and trust.
+                                        客户端名称.
                                     </span>
                                 </div>
                             </div>
@@ -189,7 +188,7 @@
                                                     @keyup.enter="update" v-model="editForm.redirect">
 
                                     <span class="form-text text-muted">
-                                        Your application's authorization callback URL.
+                                        您的应用认证后回调地址.
                                     </span>
                                 </div>
                             </div>
@@ -198,10 +197,10 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
 
                         <button type="button" class="btn btn-primary" @click="update">
-                            Save Changes
+                            保存
                         </button>
                     </div>
                 </div>

@@ -48063,7 +48063,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     /*
@@ -48230,7 +48229,7 @@ var render = function() {
           },
           [
             _c("span", [
-              _vm._v("\n                    OAuth Clients\n                ")
+              _vm._v("\n                    授权码认证客户端\n                ")
             ]),
             _vm._v(" "),
             _c(
@@ -48240,11 +48239,7 @@ var render = function() {
                 attrs: { tabindex: "-1" },
                 on: { click: _vm.showCreateClientForm }
               },
-              [
-                _vm._v(
-                  "\n                    Create New Client\n                "
-                )
-              ]
+              [_vm._v("\n                    创建客户端\n                ")]
             )
           ]
         )
@@ -48253,9 +48248,7 @@ var render = function() {
       _c("div", { staticClass: "card-body" }, [
         _vm.clients.length === 0
           ? _c("p", { staticClass: "mb-0" }, [
-              _vm._v(
-                "\n                You have not created any OAuth clients.\n            "
-              )
+              _vm._v("\n                您还没有创建任何客户端.\n            ")
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -48301,7 +48294,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                Edit\n                            "
+                            "\n                                编辑\n                            "
                           )
                         ]
                       )
@@ -48320,7 +48313,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                Delete\n                            "
+                            "\n                                删除\n                            "
                           )
                         ]
                       )
@@ -48412,7 +48405,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("span", { staticClass: "form-text text-muted" }, [
                       _vm._v(
-                        "\n                                    Something your users will recognize and trust.\n                                "
+                        "\n                                    客户端名称.\n                                "
                       )
                     ])
                   ])
@@ -48467,7 +48460,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("span", { staticClass: "form-text text-muted" }, [
                       _vm._v(
-                        "\n                                    Your application's authorization callback URL.\n                                "
+                        "\n                                    您的应用认证后回调地址.\n                                "
                       )
                     ])
                   ])
@@ -48482,7 +48475,7 @@ var render = function() {
                   staticClass: "btn btn-secondary",
                   attrs: { type: "button", "data-dismiss": "modal" }
                 },
-                [_vm._v("Close")]
+                [_vm._v("关闭")]
               ),
               _vm._v(" "),
               _c(
@@ -48492,11 +48485,7 @@ var render = function() {
                   attrs: { type: "button" },
                   on: { click: _vm.store }
                 },
-                [
-                  _vm._v(
-                    "\n                        Create\n                    "
-                  )
-                ]
+                [_vm._v("\n                        创建\n                    ")]
               )
             ])
           ])
@@ -48583,7 +48572,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("span", { staticClass: "form-text text-muted" }, [
                       _vm._v(
-                        "\n                                    Something your users will recognize and trust.\n                                "
+                        "\n                                    客户端名称.\n                                "
                       )
                     ])
                   ])
@@ -48638,7 +48627,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("span", { staticClass: "form-text text-muted" }, [
                       _vm._v(
-                        "\n                                    Your application's authorization callback URL.\n                                "
+                        "\n                                    您的应用认证后回调地址.\n                                "
                       )
                     ])
                   ])
@@ -48653,7 +48642,7 @@ var render = function() {
                   staticClass: "btn btn-secondary",
                   attrs: { type: "button", "data-dismiss": "modal" }
                 },
-                [_vm._v("Close")]
+                [_vm._v("关闭")]
               ),
               _vm._v(" "),
               _c(
@@ -48663,11 +48652,7 @@ var render = function() {
                   attrs: { type: "button" },
                   on: { click: _vm.update }
                 },
-                [
-                  _vm._v(
-                    "\n                        Save Changes\n                    "
-                  )
-                ]
+                [_vm._v("\n                        保存\n                    ")]
               )
             ])
           ])
@@ -48701,7 +48686,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h4", { staticClass: "modal-title" }, [
-        _vm._v("\n                        Create Client\n                    ")
+        _vm._v("\n                        创建客户端\n                    ")
       ]),
       _vm._v(" "),
       _c(
@@ -48733,7 +48718,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h4", { staticClass: "modal-title" }, [
-        _vm._v("\n                        Edit Client\n                    ")
+        _vm._v("\n                        编辑客户端\n                    ")
       ]),
       _vm._v(" "),
       _c(
@@ -48918,6 +48903,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     /*
@@ -48992,9 +48984,7 @@ var render = function() {
     _vm.tokens.length > 0
       ? _c("div", [
           _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Authorized Applications")
-            ]),
+            _c("div", { staticClass: "card-header" }, [_vm._v("已认证应用")]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("table", { staticClass: "table table-borderless mb-0" }, [
@@ -49004,6 +48994,18 @@ var render = function() {
                   "tbody",
                   _vm._l(_vm.tokens, function(token) {
                     return _c("tr", [
+                      _c(
+                        "td",
+                        { staticStyle: { "vertical-align": "middle" } },
+                        [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(token.user_id) +
+                              "\n                            "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
                       _c(
                         "td",
                         { staticStyle: { "vertical-align": "middle" } },
@@ -49048,7 +49050,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                    Revoke\n                                "
+                                "\n                                    废除\n                                "
                               )
                             ]
                           )
@@ -49071,7 +49073,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("User ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Client Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Scopes")]),
         _vm._v(" "),
