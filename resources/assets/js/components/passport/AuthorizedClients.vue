@@ -15,7 +15,7 @@
                     <table class="table table-borderless mb-0">
                         <thead>
                             <tr>
-                                <th>User ID</th>
+                                <th>User Name</th>
                                 <th>Client Name</th>
                                 <th>Scopes</th>
                                 <th></th>
@@ -24,9 +24,9 @@
 
                         <tbody>
                             <tr v-for="token in tokens">
-                                <!-- User ID -->
+                                <!-- User Name -->
                                 <td style="vertical-align: middle;">
-                                    {{ token.user_id }}
+                                    {{ token.user.name }}
                                 </td>
 
                                 <!-- Client Name -->
@@ -94,7 +94,7 @@
              * Get all of the authorized tokens for the user.
              */
             getTokens() {
-                axios.get('/oauth/tokens')
+                axios.get('/User/oauthclients')
                         .then(response => {
                             this.tokens = response.data;
                         });

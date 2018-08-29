@@ -37,8 +37,9 @@ class ResponseHandle
 
         if ($response->exception) {
             if ($response->exception instanceof CheckAuthException) {
-                return $this->makeErrorResponse($response->exception->getHttpStatusCode(), $this->makeCode($response->exception->getCode()), $response->exception->getMessage(), $response->exception->getHint());
+                return $this->makeErrorResponse($response->exception->getMessage(),$response->exception->getHttpStatusCode(), $this->makeCode($response->exception->getCode()),$response->exception->getHint());
             }
+            return $this->makeErrorResponse($response->exception->getMessage(),500);
         }
         return $this->makeSuccessResponse($response->getStatusCode(),$response->getData());
     }
@@ -49,7 +50,7 @@ class ResponseHandle
      * @param string $hit
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function makeErrorResponse($status,$errCode,$message,$hint=''){
+    protected function makeErrorResponse($message='',$status='',$errCode='',$hint=''){
         return response()->json(compact('status','errCode','message','hint'));
     }
 

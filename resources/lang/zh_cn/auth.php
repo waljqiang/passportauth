@@ -23,4 +23,5 @@ return [
     'confirmpassword' => '确认密码',
     'remeber' => '记住我',
     'name' => '名称',
+    'username' => '用户名'
 ];

@@ -10,7 +10,7 @@
             <div class="card-header">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span>
-                        授权码认证客户端
+                        客户端
                     </span>
                     <a class="action-link" tabindex="-1" @click="showCreateClientForm">
                         创建客户端

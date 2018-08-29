@@ -48229,7 +48229,7 @@ var render = function() {
           },
           [
             _c("span", [
-              _vm._v("\n                    授权码认证客户端\n                ")
+              _vm._v("\n                    客户端\n                ")
             ]),
             _vm._v(" "),
             _c(
@@ -48953,7 +48953,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getTokens: function getTokens() {
             var _this = this;
 
-            axios.get('/oauth/tokens').then(function (response) {
+            axios.get('/User/oauthclients').then(function (response) {
                 _this.tokens = response.data;
             });
         },
@@ -49000,7 +49000,7 @@ var render = function() {
                         [
                           _vm._v(
                             "\n                                " +
-                              _vm._s(token.user_id) +
+                              _vm._s(token.user.name) +
                               "\n                            "
                           )
                         ]
@@ -49073,7 +49073,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("User ID")]),
+        _c("th", [_vm._v("User Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Client Name")]),
         _vm._v(" "),

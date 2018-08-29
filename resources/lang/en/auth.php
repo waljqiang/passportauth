@@ -23,4 +23,5 @@ return [
     'confirmpassword' => 'Confirm Password',
     'remeber' => 'Remember Me',
     'name' => 'Name',
+    'username' => 'User Name'
 ];
