@@ -17,8 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//同步业务系统数据
 Route::post('User/synCareUser','Client\UserController@synCareUser');
-Route::group(['middleware'=>'auth-api:api','namespace'=>'Client'],function(){
-    Route::post('token/check','UserController@check');
-    //Route::post('client/check','UserController@checkClient');
+
+
+Route::group(['namespace'=>'Client'],function(){
+    Route::post('token/check','UserController@check')->middleware('auth-api:api');
+    Route::post('client/check','UserController@checkClient');
 });
+

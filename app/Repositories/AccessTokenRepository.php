@@ -32,7 +32,11 @@ class AccessTokenRepository extends BaseRepository{
             $query->where('client_id',function($query) use ($id){
                 $query->select('client_id')->from('oauth_access_tokens')->where('id',$id);
             });
-        })->where('revoked',false);
+        })->where('revoked',false)->get();
+    }
+
+    public function findInvalidTokenByClient($id,$clientID){
+        return $this->model->where('id','!=',$id)->where('client_id',$clientID)->whereNull('user_id')->get();
     }
 
     /**

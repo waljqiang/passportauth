@@ -30,7 +30,10 @@ class RevokeOldTokens{
      * @return void
      */
     public function handle(AccessTokenCreated $event){
-        $invalidToken = $this->accessTokenRepository->findInvalidToken($event->tokenId,$event->userId,$event->clientId);
+        if(!empty($event->userId))
+            $invalidToken = $this->accessTokenRepository->findInvalidToken($event->tokenId,$event->userId,$event->clientId);
+        else
+            $invalidToken = $this->accessTokenRepository->findInvalidTokenByClient($event->tokenId,$event->clientId);
         $invalidTokenIDs = $invalidToken->pluck('id');
         $this->accessTokenRepository->revokeInvalidToken($invalidTokenIDs);
         $this->refreshTokenRepository->revokeInvalidRefreshToken($invalidTokenIDs);
