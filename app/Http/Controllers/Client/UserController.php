@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CheckRequest;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Exceptions\CheckAuthException;
 use Laravel\Passport\TokenRepository;
-use Lcobucci\JWT\Parser;
 use App\Services\UserService;
 
 class UserController extends Controller
@@ -30,24 +30,24 @@ class UserController extends Controller
     }
 
 
-    public function check(Request $request){
-    	$scope = $request->input('scope');
-        if(!$request->user()->tokenCan($scope)){
-            throw CheckAuthException::noScope($scope);
+    public function check(CheckRequest $request){
+    	$scopes = $request->input('scopes');
+        foreach ($scopes as $scope) {
+            if(!$request->user()->tokenCan($scope)){
+                throw CheckAuthException::noScope($scope);
+            }
         }
         return Auth::user();
     }
 
-    public function checkClient(Request $request){
-        /*$scope = $request->input('scope');
-        if(!$request->user()->tokenCan($scope)){
-            throw CheckAuthException::noScope($scope);
-        }
-        return Auth::user();*/
+    public function checkClient(CheckRequest $request,UserService $userService){
         $bearerToken = $request->header('Authorization');
-        $jwt = trim(preg_replace('/^(?:\s+)?Bearer\s/', '', $bearerToken));
-        $token = (new Parser())->parse($jwt);
-        dd($token);
+        $user = $userService->getUserByToken($bearerToken,1);
+        if($user){
+            return compact('user');
+        }else{
+            throw new CheckAuthException('unknowen error',400100,'unknowen_error');
+        }
     }
 
     public function getOauthClients(Request $request){

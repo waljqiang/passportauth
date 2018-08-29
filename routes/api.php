@@ -23,6 +23,6 @@ Route::post('User/synCareUser','Client\UserController@synCareUser');
 
 Route::group(['namespace'=>'Client'],function(){
     Route::post('token/check','UserController@check')->middleware('auth-api:api');
-    Route::post('client/check','UserController@checkClient');
+    Route::post('client/check','UserController@checkClient')->middleware('check-client');
 });
 

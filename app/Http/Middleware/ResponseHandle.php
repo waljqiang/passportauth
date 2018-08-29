@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Validation\ValidationException;
 use App\Exceptions\CheckAuthException;
 use Closure;
 use Illuminate\Http\Request;
@@ -34,12 +35,17 @@ class ResponseHandle
          * @var Response $response
          */
         $response = $next($request);
-
         if ($response->exception) {
+            if ($response->exception instanceof ValidationException) {
+                $errorCode = array_map(function ($val) {
+                    return (int)$val;
+                }, $response->exception->validator->errors()->all());
+                return $this->makeErrorResponse('invalid params',500,$errorCode,'please check the params');
+            }
             if ($response->exception instanceof CheckAuthException) {
                 return $this->makeErrorResponse($response->exception->getMessage(),$response->exception->getHttpStatusCode(), $this->makeCode($response->exception->getCode()),$response->exception->getHint());
             }
-            return $this->makeErrorResponse($response->exception->getMessage(),500);
+            return $this->makeErrorResponse($response->exception->getMessage(),500,400100);
         }
         return $this->makeSuccessResponse($response->getStatusCode(),$response->getData());
     }

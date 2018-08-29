@@ -37,6 +37,14 @@ class UserRepository extends BaseRepository{
         return $this->model->where('name',$name)->first();
     }
 
+    public function getUserByClient($clientID,$type){
+        return $this->model->whereHas('client',function($query) use ($clientID){
+            $query->where('id',$clientID);
+        })->with('client')->with(['bussiness'=>function($query) use ($type){
+            $query->where('type',$type);
+        }])->first();
+    }
+
     protected function hasBussiness($uid,$type){
         return $this->model->whereHas('bussiness',function($query) use ($uid,$type){
             $query->where('uid',$uid)->where('type',$type);

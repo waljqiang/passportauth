@@ -26,4 +26,16 @@ class User extends Model
         return $this->hasMany(UserBussiness::class,'uid');
     }
 
+    public function client(){
+        return $this->hasOne(Client::class,'user_id');
+    }
+
+    public function getUserIDAttribute(){
+        return $this->bussiness[0]->user_id;
+    }
+
+    public function getClientIDAttribute(){
+        return $this->client->id;
+    }
+
 }

@@ -50,4 +50,5 @@ class AccessTokenRepository extends BaseRepository{
         return $this->model->whereIn('id',$tokenIDs)
                                 ->update(['revoked' => true,'updated_at' => Carbon::now()]);
     }
+
 }

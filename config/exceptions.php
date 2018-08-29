@@ -3,6 +3,7 @@
 return [
     //认证异常错误码
     'SUCCESS' => 0,
+    'UNKNOWEN' => 400100,
     'TOKEN_INVALID' => 400101,
     'GRANTTYPE_UNSUPPORTED' => 400102,
     'PARAMS_INVALID' => 400103,
@@ -12,5 +13,7 @@ return [
     'AUTH_SERVER_ERR' => 400107,
     'REFRESH_TOKEN_INVALID' => 400108,
     'ACCESS_DENEID' => 400109,
-    'GRANT_INVALID' => 400110
+    'GRANT_INVALID' => 400110,
+    'SCOPE_REQUIRED' => 400111,
+    'SCOPE_ARRAY' => 400112
 ];
