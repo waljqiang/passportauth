@@ -16,8 +16,8 @@ class UserRepository extends BaseRepository{
 
     public function registerUser($name,$password,$userID,$email = '',$type = 1){
         $time = Carbon::now();
-        $infos = $this->model->where('name',$name)->first();
-        if(empty($infos)){
+        $userModel = $this->model->where('name',$name)->first();
+        if(empty($userModel)){
             $user = [
                 'name' => $name,
                 'password' => Hash::make($password),
@@ -26,11 +26,21 @@ class UserRepository extends BaseRepository{
                 'updated_at' => $time
             ];
             $userModel = $this->model->create($user);
-            $userModel->bussiness()->Create(['user_id'=>$userID,'uid'=>$userModel->id,'type'=>$type]);
-            return true;
-        }else{
-            return false;
         }
+        if($userModel->bussiness->isEmpty() || !$this->hasBussiness($userModel->id,$type)){
+            $userModel->bussiness()->Create(['user_id'=>$userID,'uid'=>$userModel->id,'type'=>$type]);
+        }     
+        return true;
+    }
+
+    public function getUser($name){
+        return $this->model->where('name',$name)->first();
+    }
+
+    protected function hasBussiness($uid,$type){
+        return $this->model->whereHas('bussiness',function($query) use ($uid,$type){
+            $query->where('uid',$uid)->where('type',$type);
+        });
     }
 
 }
