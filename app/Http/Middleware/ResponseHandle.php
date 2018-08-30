@@ -10,6 +10,9 @@ use Illuminate\Http\Response;
 
 class ResponseHandle
 {
+    /**
+     * 映射passport默认错误码
+     */
     private $errCode = [
         1 => 'TOKEN_INVALID',
         2 => 'GRANTTYPE_UNSUPPORTED',
@@ -26,9 +29,9 @@ class ResponseHandle
     /**
      * Handle an incoming request.
      *
-     * @param  Request $request
+     * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     public function handle($request, Closure $next){
         /**
@@ -70,6 +73,11 @@ class ResponseHandle
         return response()->json(compact('status','errCode','data'));
     }
 
+    /**
+     * 转换paasport插件默认错误码为应用错误码
+     * @param $errCode
+     * @return $errCode
+     */
     protected function makeCode($errCode){
         return isset($this->errCode[$errCode]) ? config('exceptions.' . $this->errCode[$errCode]) : $errCode;
     }

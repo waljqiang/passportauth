@@ -4,12 +4,18 @@ use App\Repositories\UserRepository;
 use Lcobucci\JWT\Parser;
 
 class UserService{
+	/*
+	 * \App\Repositories\UserRepository
+	 */
 	private $userRepository;
 
 	public function __construct(UserRepository $userRepository){
 		$this->userRepository = $userRepository;
 	}
 
+	/**
+	 * 同步业务系统数据
+	 */
 	public function synCareUser($params){
 		$userID = array_get($params,'user_id');
 		$name = array_get($params,'name');
@@ -20,6 +26,9 @@ class UserService{
 		return $this->userRepository->registerUser($name,$password,$userID,$email,$type);
 	}
 
+	/**
+	 * 通过token获取用户信息
+	 */
 	public function getUserByToken($bearerToken,$type){
         $jwt = trim(preg_replace('/^(?:\s+)?Bearer\s/', '', $bearerToken));
         $token = (new Parser())->parse($jwt);

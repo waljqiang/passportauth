@@ -14,7 +14,7 @@ class Authenticate extends Auth
      * @param  array  $guards
      * @return void
      *
-     * @throws \Illuminate\Auth\AuthenticationException
+     * @throws \App\Exceptions\CheckAuthException
      */
     protected function authenticate(array $guards)
     {

@@ -4,8 +4,15 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
-{
+/**
+ * @property int id
+ * @property UserBussiness bussiness
+ * @property Client client
+ * @property int user_id
+ * @property int client_id
+ */
+
+class User extends Model{
     /**
      * The database table used by the model.
      *

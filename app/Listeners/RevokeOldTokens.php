@@ -14,8 +14,8 @@ class RevokeOldTokens{
     /**
      * Create the event listener.
      *
-     * @param  $accessTokenRepository App\Repositories\AccessTokenRepository
-     * @param  $refreshTokenRepository App\Repositories\RefreshTokenRepository
+     * @param \App\Repositories\AccessTokenRepository $accessTokenRepository
+     * @param \App\Repositories\RefreshTokenRepository $refreshTokenRepository
      * @return void
      */
     public function __construct(AccessTokenRepository $accessTokenRepository,RefreshTokenRepository $refreshTokenRepository){
@@ -26,7 +26,7 @@ class RevokeOldTokens{
     /**
      * Handle the event.
      *
-     * @param  AccessTokenCreated  $event
+     * @param  \Laravel\Passport\Events\AccessTokenCreated  $event
      * @return void
      */
     public function handle(AccessTokenCreated $event){

@@ -16,7 +16,12 @@ use League\OAuth2\Server\Grant\AbstractGrant;
 use Laravel\Passport\ClientRepository;
 
 class RequestHandle{
+
+    /*
+     * \Laravel\Passport\ClientRepository
+     */
     private $clientRepository;
+
     public function __construct(ClientRepository $clientRepository){
         $this->clientRepository = $clientRepository;
     }
@@ -28,7 +33,6 @@ class RequestHandle{
      * @param  \Closure $next
      * @param  string|null $guard
      * @return mixed
-     * @throws \Exception
      */
     public function handle($request, Closure $next, $guard = null){
         if($request->is('oauth/authorize')){

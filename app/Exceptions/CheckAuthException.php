@@ -4,8 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\Access\AuthorizationException;
 
-class CheckAuthException extends AuthorizationException
-{
+class CheckAuthException extends AuthorizationException{
     /**
      * @var int
      */
@@ -41,8 +40,7 @@ class CheckAuthException extends AuthorizationException
      * @param null|string $hint           A helper hint
      * @param null|string $redirectUri    A HTTP URI to redirect the user back to
      */
-    public function __construct($message, $code, $errorType, $httpStatusCode = 400, $hint = null, $redirectUri = null)
-    {
+    public function __construct($message, $code, $errorType, $httpStatusCode = 400, $hint = null, $redirectUri = null){
         parent::__construct($message, $code);
         $this->httpStatusCode = $httpStatusCode;
         $this->errorType = $errorType;
@@ -62,8 +60,7 @@ class CheckAuthException extends AuthorizationException
      *
      * @return array
      */
-    public function getPayload()
-    {
+    public function getPayload(){
         return $this->payload;
     }
 
@@ -72,8 +69,7 @@ class CheckAuthException extends AuthorizationException
      *
      * @param array $payload
      */
-    public function setPayload(array $payload)
-    {
+    public function setPayload(array $payload){
         $this->payload = $payload;
     }
 
@@ -85,8 +81,7 @@ class CheckAuthException extends AuthorizationException
      *
      * @return static
      */
-    public static function noScope($scope, $redirectUri = null)
-    {
+    public static function noScope($scope, $redirectUri = null){
         $errorMessage = "The access_token do not has the scope of {$scope}";
         $hint = 'Check the scopes of the access_token';
         return new static($errorMessage, 5, 'invalid_scope', 400, $hint, $redirectUri);
@@ -97,19 +92,22 @@ class CheckAuthException extends AuthorizationException
      *
      * @return int
      */
-    public function getHttpStatusCode()
-    {
+    public function getHttpStatusCode(){
         return $this->httpStatusCode;
     }
 
     /**
+     * Returns the current hint
      * @return null|string
      */
-    public function getHint()
-    {
+    public function getHint(){
         return $this->hint;
     }
 
+    /**
+     * Returns the current errorType
+     * @return null|string
+     */
     public function getErrorType(){
         return $this->errorType;
     }

@@ -15,8 +15,8 @@ class PruneOldTokens
     /**
      * Create the event listener.
      *
-     * @param  $accessTokenRepository App\Repositories\AccessTokenRepository
-     * @param  $refreshTokenRepository App\Repositories\RefreshTokenRepository
+     * @param \App\Repositories\AccessTokenRepository $accessTokenRepository
+     * @param \App\Repositories\RefreshTokenRepository $refreshTokenRepository
      * @return void
      */
     public function __construct(AccessTokenRepository $accessTokenRepository,RefreshTokenRepository $refreshTokenRepository){
@@ -27,7 +27,7 @@ class PruneOldTokens
     /**
      * Handle the event.
      *
-     * @param  RefreshTokenCreated  $event
+     * @param  \Laravel\Passport\Events\RefreshTokenCreated  $event
      * @return void
      */
     public function handle(RefreshTokenCreated $event){
