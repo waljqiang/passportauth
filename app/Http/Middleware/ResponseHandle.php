@@ -13,7 +13,7 @@ class ResponseHandle
     /**
      * 映射passport默认错误码
      */
-    private $errCode = [
+    private $errorCode = [
         1 => 'TOKEN_INVALID',
         2 => 'GRANTTYPE_UNSUPPORTED',
         3 => 'PARAMS_INVALID',
@@ -43,7 +43,7 @@ class ResponseHandle
                 $errorCode = array_map(function ($val) {
                     return (int)$val;
                 }, $response->exception->validator->errors()->all());
-                return $this->makeErrorResponse('invalid params',500,$errorCode,'please check the params');
+                return $this->makeErrorResponse('invalid params',400,$errorCode,'please check the params');
             }
             if ($response->exception instanceof CheckAuthException) {
                 return $this->makeErrorResponse($response->exception->getMessage(),$response->exception->getHttpStatusCode(), $this->makeCode($response->exception->getCode()),$response->exception->getHint());
@@ -54,13 +54,13 @@ class ResponseHandle
     }
 
     /**
-     * @param $errCode
+     * @param $errorCode
      * @param $message
      * @param string $hit
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function makeErrorResponse($message='',$status='',$errCode='',$hint=''){
-        return response()->json(compact('status','errCode','message','hint'));
+    protected function makeErrorResponse($message='',$status='',$errorCode='',$hint=''){
+        return response()->json(compact('status','errorCode','message','hint'));
     }
 
 
@@ -69,17 +69,17 @@ class ResponseHandle
      * @return \Illuminate\Http\JsonResponse
      */
     protected function makeSuccessResponse($status,$data=[]){
-        $errCode = config('exceptions.SUCCESS');
-        return response()->json(compact('status','errCode','data'));
+        $errorCode = config('exceptions.SUCCESS');
+        return response()->json(compact('status','errorCode','data'));
     }
 
     /**
      * 转换paasport插件默认错误码为应用错误码
-     * @param $errCode
-     * @return $errCode
+     * @param $errorCode
+     * @return $errorCode
      */
-    protected function makeCode($errCode){
-        return isset($this->errCode[$errCode]) ? config('exceptions.' . $this->errCode[$errCode]) : $errCode;
+    protected function makeCode($errorCode){
+        return isset($this->errorCode[$errorCode]) ? config('exceptions.' . $this->errorCode[$errorCode]) : $errorCode;
     }
 
 }
