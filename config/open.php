@@ -13,6 +13,7 @@ return [
         'screen-monitor' => 'Get the monitor data of the screen for user',//获取单个屏体监控数据
         'screen-image' => 'Get a monitor image of the screen for user',//获取屏体的一张监控图片(原始图)
         'screen-thumbnail' => 'Get a monitor thumbnail of the screen for user',//获取屏体最新一张监控图片(缩略图)
-        'screen-images' => 'Get a monitor image of the screen that have more cameras',//获取多摄像机屏体的最新一张监控图片(原始图)
+        'screen-images' => 'Get the monitor image of the screen that have more cameras',//获取多摄像机屏体的最新监控图片(原始图)
+        'screen-thumbnails' => 'Get the monitor thumbnail of the screen that have more cameras',//获取多摄像机屏体最新监控图片(缩略图)
     ]
 ];
