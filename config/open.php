@@ -11,5 +11,7 @@ return [
         'screen-lists' => 'Get the screens of the user',//获取用户显示屏列表
         'screen-spotcheck' => 'Get the spotcheck data of the screen for user',//获取单个屏体点检数据
         'screen-monitor' => 'Get the monitor data of the screen for user',//获取单个屏体监控数据
+        'screen-image' => 'Get a monitor image of the screen for user',//获取屏体的一张监控图片(原始图)
+        'screen-thumbnail' => 'Get a monitor thumbnail of the screen for user',//获取屏体最新一张监控图片(缩略图)
     ]
 ];
