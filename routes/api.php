@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //同步业务系统数据
 Route::post('User/synCareUser','Client\UserController@synCareUser');
 
-
+//校验access_token
 Route::group(['namespace'=>'Client'],function(){
     Route::post('token/check','UserController@check')->middleware('auth-api:api');
     Route::post('client/check','UserController@checkClient')->middleware('check-client');
