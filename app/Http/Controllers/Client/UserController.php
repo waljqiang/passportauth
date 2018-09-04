@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SynuserRequest;
 use App\Http\Requests\CheckRequest;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -79,7 +80,7 @@ class UserController extends Controller
      * @param  \App\Services\UserService $UserService
      * @return \Illuminate\Http\JsonResponse
      */
-    public function synCareUser(Request $request,UserService $userService){
+    public function synCareUser(SynuserRequest $request,UserService $userService){
         $result = $userService->synCareUser($request->all());
         return compact('result');
     }
